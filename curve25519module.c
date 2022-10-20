@@ -47,7 +47,7 @@ calculateSignature(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    curve25519_sign((unsigned char *)signature, (unsigned char *)privatekey, 
+    curve25519_sign((unsigned char *)signature, (unsigned char *)privatekey,
                     (unsigned char *)message, messagelen, (unsigned char *)random);
 
    return PyBytes_FromStringAndSize((char *)signature, 64);
@@ -74,7 +74,7 @@ verifySignature(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    int result = curve25519_verify((unsigned char *)signature, (unsigned char *)publickey, 
+    int result = curve25519_verify((unsigned char *)signature, (unsigned char *)publickey,
                                    (unsigned char *)message, messagelen);
 
     return Py_BuildValue("i", result);
@@ -158,7 +158,7 @@ curve25519_functions[] = {
         PyModuleDef_HEAD_INIT,
         "axolotl_curve25519",
         NULL,
-        NULL,
+        0,
         curve25519_functions,
     };
 
